@@ -49,6 +49,18 @@ highlight default link cmDottedKey Normal
 syntax region cmVariable start='${' end='}' contained containedin=tomlString display
 highlight default link cmVariable Define
 
+" Value within `command = 'foo'` block
+syntax match cmCommand "\v%(%(^|[{,])\s*command\s*\=\s*)@<=(\'|\")\zs.{-}\ze\1" contained containedin=tomlString
+highlight default link cmCommand Keyword
+
+" Give `args` region a little extra treatment
+" syntax region cmArgs start="\v%(%(^|[{,])\s*args\s*\=\s*)@<=." end="\]" contained containedin=tomlArray
+" syntax match cmArg "\v(\'|\")\zs.{-}\ze\1" contained containedin=tomlString display
+syntax match cmFlag  /\v(\'|\")\zs\-{1,2}.{-}\ze\1/ contained containedin=tomlString display
+highlight default link cmArg Normal
+highlight default link cmArgs Function
+highlight default link cmFlag Special
+
 " Built-in functions
 syntax region cmFunction contained containedin=tomlString display
     \ matchgroup=cmFunctionName
