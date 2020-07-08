@@ -2,7 +2,7 @@
 
 Vim syntax for [cargo-make](https://github.com/sagiegurari/cargo-make).
 
-TODO: Screenshot
+![Screenshot](vim-cargo-make-screenshot.png)
 
 ## Features
 
