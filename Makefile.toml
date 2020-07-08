@@ -1,0 +1,34 @@
+[tasks.echo]
+command = "echo"
+args = [
+    "${SOME_ENV_VAR}",
+    "@@split(CARGO_MAKE_CLIPPY_ARGS, )",
+]
+
+[tasks.sh]
+script = ['''
+#!/bin/sh
+echo Here is some sh $(date)
+''']
+
+[tasks.duckscript]
+script = ['''
+#!@duckscript
+echo Here is some duckscript
+echo true 1 2 3
+''']
+
+[tasks.rust]
+script = ['''
+//@rust
+//! ```cargo
+//! [dependencies]
+//! time = "*"
+//! ```
+fn main() {
+    println!("{}", time::now().rfc822z());
+}
+''']
+
+[tasks.dotted]
+env.MY_ENV = "value"
